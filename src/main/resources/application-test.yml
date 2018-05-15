@@ -1,0 +1,14 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9000/eureka/
+server:
+  port: 8700
+zuul:
+  routes:
+    say-hello-service:
+      path: /hotel-consumer/**
+      serviceId: hotel-consumer
+    greeting-service:
+      path: /hotel-service/**
+      serviceId: hotel-service
