@@ -14,11 +14,23 @@ spring:
     name: api-gateway
   profiles:
     active: dev
-  #zipkin:
-    #base-url: http://localhost:5001
-zuul:
-  routes:
-    trade-service:
-      path: /demo-base/**
-      serviceId: demo-base
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      - id: demo-base
+        uri: lb://demo-base
+        predicates:
+        - Path=/base/**
+        filters:
+        - StripPrefix=1
+      - id: openapi
+        uri: http://localhost:${server.port}
+        predicates:
+        - Path=/v3/api-docs/**
+        filters:
+        - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
+
     

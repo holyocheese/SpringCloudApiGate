@@ -1,12 +1,15 @@
 eureka:
+  instance:
+      statusPageUrlPath: /actuator/info
+      healthCheckUrlPath: /actuator/health
+      prefer-ip-address: true
+      ip-address: 127.0.0.1
   client:
-    serviceUrl:
-      defaultZone: http://localhost:9000/eureka/
+      serviceUrl:
+          defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:9000}/eureka/
 server:
-  port: 8899
-zuul:
-  routes:
-    trade-service:
-      path: /demo-base/**
-      serviceId: demo-base
+  port: 8866
+spring:
+  main:
+    web-application-type: reactive
     
