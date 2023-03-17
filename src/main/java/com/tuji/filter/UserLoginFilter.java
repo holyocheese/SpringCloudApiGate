@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
@@ -17,7 +16,7 @@ public class UserLoginFilter extends ZuulFilter {
 		HttpServletRequest request = requestContext.getRequest();
 		logger.info(String.format("%s >>> %s", request.getMethod(), request.getRequestURL().toString()));
 		
-		Object userId = request.getParameter("userId");
+		//Object userId = request.getParameter("userId");
 		
 		/*if(userId == null) {
 			logger.warn("userId is empry, not allow to access website");   
